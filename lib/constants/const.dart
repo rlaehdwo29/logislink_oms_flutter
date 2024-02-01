@@ -33,8 +33,8 @@ class Const {
   static const String NOTICE_VO = "notice_vo";
   // Guest 모드
   static final KEY_GUEST_MODE = "key_guest";
-  static final GUEST_ID = "guest";
-  static final GUEST_PW = "guestp";
+  static final GUEST_ID = "guestH";
+  static final GUEST_PW = "guestHp";
 
   /**
    * Intent Result Code

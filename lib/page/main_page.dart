@@ -307,12 +307,12 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
                               Obx(()=>
                                   Text(
                                     "${mUser.value.bizName}",
-                                    style: CustomStyle.CustomFont(styleFontSize18, styleWhiteCol),
+                                    style: CustomStyle.CustomFont(styleFontSize16, styleWhiteCol),
                                   )),
                               CustomStyle.sizedBoxHeight(10.0.h),
                               Obx(()=>Text(
                                 "${mUser.value.deptName}",
-                                style: CustomStyle.CustomFont(styleFontSize16, styleWhiteCol),
+                                style: CustomStyle.CustomFont(styleFontSize15, styleWhiteCol),
                               )
                               )
                             ]
@@ -356,7 +356,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
             ),
 
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "내정보",
                 style: CustomStyle.CustomFont(styleFontSize14, styleBlackCol1),
@@ -366,7 +366,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
               },
             ),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "실적현황",
                 style: CustomStyle.CustomFont(styleFontSize14, styleBlackCol1),
@@ -376,7 +376,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
               },
             ),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "공지사항",
                 style: CustomStyle.CustomFont(styleFontSize14, styleBlackCol1),
@@ -386,7 +386,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
               },
             ),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "설정",
                 style: CustomStyle.CustomFont(styleFontSize14, styleBlackCol1),
@@ -395,7 +395,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => AppBarSettingPage()));
               },
             ),ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "도움말",
                 style: CustomStyle.CustomFont(styleFontSize14, styleBlackCol1),
@@ -407,7 +407,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
                 }
               },
             ),ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h),horizontal: CustomStyle.getWidth(5.w)),
+              contentPadding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
               title: Text(
                 "로그아웃",
                 style: CustomStyle.CustomFont(styleFontSize14, order_state_09),
