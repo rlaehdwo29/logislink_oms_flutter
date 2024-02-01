@@ -84,7 +84,7 @@ class _OrderAddrConfirmPageState extends State<OrderAddrConfirmPage> {
                     child: RichText(
                         overflow: TextOverflow.visible,
                         text: TextSpan(
-                          text: "${mData.value.addrName}",
+                          text: mData.value.addrName??"",
                           style: CustomStyle.CustomFont(styleFontSize14, text_color_01),
                         )
                     )
@@ -93,7 +93,7 @@ class _OrderAddrConfirmPageState extends State<OrderAddrConfirmPage> {
                     child: RichText(
                         overflow: TextOverflow.visible,
                         text: TextSpan(
-                          text: "${mData.value.addr}",
+                          text: mData.value.addr??"",
                           style: CustomStyle.CustomFont(styleFontSize13, text_color_03),
                         )
                     )
@@ -102,7 +102,7 @@ class _OrderAddrConfirmPageState extends State<OrderAddrConfirmPage> {
                     child: RichText(
                         overflow: TextOverflow.visible,
                         text: TextSpan(
-                          text: "${mData.value.addrDetail}",
+                          text: mData.value.addrDetail??"",
                           style: CustomStyle.CustomFont(styleFontSize13, text_color_03),
                         )
                     )
@@ -238,7 +238,7 @@ class _OrderAddrConfirmPageState extends State<OrderAddrConfirmPage> {
                         counterText: '',
                         hintText: Strings.of(context)?.get("order_addr_reg_tel_hint")??"Not Found",
                         hintStyle:CustomStyle.greyDefFont(),
-                        contentPadding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(15.0)),
+                        contentPadding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w),vertical: CustomStyle.getHeight(10.h)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: text_box_color_02, width: CustomStyle.getWidth(1.0.w)),
                             borderRadius: BorderRadius.circular(10.h)

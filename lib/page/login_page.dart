@@ -213,8 +213,8 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
       ReturnMap _response = DioService.dioResponse(it);
       logger.i("CheckTermsAgree() _response -> ${_response.status} // ${_response.resultMap}");
       if(_response.status == "200") {
-        TermsAgreeModel user = TermsAgreeModel.fromJSON(it.response.data["data"]);
         if(it.response.data["data"] != null) {
+          TermsAgreeModel user = TermsAgreeModel.fromJSON(it.response.data["data"]);
           if(user.necessary == "N" || user.necessary == ""){
             m_TermsCheck = true;
             m_TermsMode = TERMS.UPDATE;

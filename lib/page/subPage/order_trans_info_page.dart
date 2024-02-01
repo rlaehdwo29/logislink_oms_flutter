@@ -359,7 +359,6 @@ class _OrderTransInfoPageState extends State<OrderTransInfoPage> {
     if(results != null && results.containsKey("code")) {
       if (results["code"] == 200) {
         if(results["cust"] != null) {
-          print("흐에에에엥 => ${results["cust"]}");
           await setActivityResult(results);
         }
       }
@@ -369,7 +368,6 @@ class _OrderTransInfoPageState extends State<OrderTransInfoPage> {
   Future<void> setActivityResult(Map<String,dynamic> results)async {
     if(results["cust"] != null) {
       await setCustomer(results["cust"]);
-      print("ㅎ하아앙 ->${ChargeCheck.value}");
       if(ChargeCheck.value == "") {
         await getUnitChargeCnt();
       }else if(ChargeCheck.value == "Y") {
@@ -503,7 +501,7 @@ class _OrderTransInfoPageState extends State<OrderTransInfoPage> {
   }
 
   bool validation() {
-    if(tvCustName.text.trim().isEmpty == true) {
+    if(mData.value.buyCustName.toString().trim().isEmpty == true) {
       Util.toast("운송사를 지정해 주세요.");
       return false;
     }

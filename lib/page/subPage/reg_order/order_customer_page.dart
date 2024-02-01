@@ -149,22 +149,6 @@ class _OrderCustomerPageState extends State<OrderCustomerPage> {
     );
   }
 
-  Future<void> onNoneCustomer() async {
-    CustomerModel value = CustomerModel();
-    String result = search_text.value.trim();
-
-    if(result != "" && result != null) {
-      value.bizName = result;
-      value.custName = result;
-      //value.custMngName = "정상";
-      value.sellBuySctn = "01";
-
-      Navigator.of(context).pop({'code':200,'cust':value, "nonCust":true});
-    }else{
-      Util.toast("거래처 이름을 작성해주세요.");
-    }
-  }
-
   Widget searchBoxWidget() {
     return Row(
         children :[

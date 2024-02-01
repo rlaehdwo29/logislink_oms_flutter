@@ -78,17 +78,24 @@ class OrderService with ChangeNotifier {
     UserModel? user = await App().getUserInfo();
     orderList.value = List.empty(growable: true);
     int totalPage = 1;
-    await DioService.dioClient(header: true).getOrder(user.authorization, startDate, endDate, orderState, myOrder, page).then((it) async {
+    await DioService.dioClient(header: true).getOrder(
+        user.authorization,
+        startDate,
+        endDate,
+        orderState,
+        myOrder,
+        page
+    ).then((it) async {
       ReturnMap _response = DioService.dioResponse(it);
       logger.d("getOrder() _response -> ${_response.status} // ${_response.resultMap}");
       //openOkBox(context,"${_response.resultMap}",Strings.of(context)?.get("confirm")??"Error!!",() {Navigator.of(context).pop(false);});
+      var db = App().getRepository();
       if(_response.status == "200") {
         if(_response.resultMap?["result"] == true) {
           if (_response.resultMap?["data"] != null) {
             try {
               var list = _response.resultMap?["data"] as List;
               List<OrderModel> itemsList = list.map((i) => OrderModel.fromJSON(i)).toList();
-              var db = App().getRepository();
               if(itemsList.length > 0){
                 if(page == 1) await db.deleteAll();
                 await db.insertAll(context,itemsList);
@@ -108,6 +115,9 @@ class OrderService with ChangeNotifier {
         }else{
           openOkBox(context,"${_response.resultMap?["msg"]}",Strings.of(context)?.get("confirm")??"Error!!",() {Navigator.of(context).pop(false);});
         }
+      }else{
+        orderList.value = List.empty(growable: true);
+        await db.deleteAll();
       }
     }).catchError((Object obj){
       switch (obj.runtimeType) {

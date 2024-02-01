@@ -139,12 +139,12 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
           categoryOrderCode.value = codeModel?.code??"";
           categoryOrderState.value = codeModel?.codeName??"-";
           page.value = 1;
-          scrollController.jumpTo(0);
+          if(orderList.length > 0) scrollController.jumpTo(0);
           break;
         case 'ALLOC_STATE_CD':
           categoryVehicCode.value = codeModel?.code??"";
           page.value = 1;
-          scrollController.jumpTo(0);
+          if(orderList.length > 0) scrollController.jumpTo(0);
           break;
       }
     }
@@ -1101,7 +1101,7 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
                   onTap: (){
                     page.value = 1;
                     myOrderSelect.value = !myOrderSelect.value;
-                    scrollController.jumpTo(0);
+                    if(orderList.length > 0) scrollController.jumpTo(0);
                   },
                   child: Container(
                     decoration: CustomStyle.customBoxDeco(Colors.white,radius: 5.0, border_color: myOrderSelect.value?text_box_color_01:text_box_color_02),
