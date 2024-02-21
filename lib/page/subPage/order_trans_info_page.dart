@@ -504,6 +504,9 @@ class _OrderTransInfoPageState extends State<OrderTransInfoPage> {
     if(mData.value.buyCustName.toString().trim().isEmpty == true) {
       Util.toast("운송사를 지정해 주세요.");
       return false;
+    }else if(mData.value.buyCharge?.isEmpty == true || mData.value.buyCharge == null) {
+      Util.toast("지불운임을 입력해주세요.");
+      return false;
     }
     return true;
   }

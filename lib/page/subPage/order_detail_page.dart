@@ -615,6 +615,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   flex: 2,
                   child: InkWell(
                     onTap:(){
+                      goToLocationControl();
                       //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationControlPage(order_vo: mData.value)));
                     } ,
                     child: Icon(Icons.location_on,size: 35.h,color: swipe_edit_btn)
