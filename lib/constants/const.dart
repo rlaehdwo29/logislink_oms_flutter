@@ -3,11 +3,11 @@ class Const {
   static final bool logEnable = false;
 
   // 버전명
-  static final APP_VERSION = "1.1.9";
+  static final APP_VERSION = "1.1.10";
 
   //스토어 주소
   static final ANDROID_STORE = "https://play.google.com/store/apps/details?id=com.logislink.oms";
-  static final IOS_STORE = "https://apps.apple.com/app/id6474982649";
+  static final IOS_STORE = "https://apps.apple.com/app/id6476912966";
 
 
   static final int CONNECT_TIMEOUT = 15;

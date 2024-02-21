@@ -195,7 +195,7 @@ class _AppBarMyPageState extends State<AppBarMyPage> {
                                 borderRadius: BorderRadius.circular(5.w),
                                 color: box_body
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(10.w),vertical: CustomStyle.getHeight(10.h)),
+                            padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w),vertical: CustomStyle.getHeight(5.h)),
                             margin: EdgeInsets.only(top: CustomStyle.getHeight(5.h)),
                             child: Text(
                               mData.value.userName??"",
@@ -224,7 +224,7 @@ class _AppBarMyPageState extends State<AppBarMyPage> {
                                 borderRadius: BorderRadius.circular(5.w),
                                 color: box_body
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(10.w),vertical: CustomStyle.getHeight(10.h)),
+                            padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w),vertical: CustomStyle.getHeight(5.h)),
                             margin: EdgeInsets.only(top: CustomStyle.getHeight(5.h)),
                             child: Text(
                               Util.makePhoneNumber(mData.value.mobile),
@@ -289,7 +289,7 @@ class _AppBarMyPageState extends State<AppBarMyPage> {
                       )
                           : InputDecoration(
                         counterText: '',
-                        contentPadding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w),vertical: CustomStyle.getHeight(10.h)),
+                        contentPadding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w),vertical: CustomStyle.getHeight(5.h)),
                         hintText: Strings.of(context)?.get("my_page_password_hint")??"새 비밀번호를 입력해주세요._",
                         hintStyle:CustomStyle.greyDefFont(),
                         enabledBorder: OutlineInputBorder(

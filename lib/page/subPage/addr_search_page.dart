@@ -262,20 +262,22 @@ class _AddrSearchPageState extends State<AddrSearchPage> {
               },
               body: Obx((){
                   return Container(
-                    padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(10.w)),
+                    padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
                     color: Colors.white,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children : [
-                        Row(
+                        Expanded(
+                          flex: 2,
+                        child: Row(
                           children: [
                           InkWell(
                           onTap: () async {
                             ShowCodeDialogWidget(context:context, mTitle: "시/도", codeType: Const.SIDO, mFilter: "", callback: selectSido).showDialog();
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(15.w)),
+                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(8.w)),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(5.w)),
                                 color: Colors.white,
@@ -296,7 +298,7 @@ class _AddrSearchPageState extends State<AddrSearchPage> {
                             ShowCodeDialogWidget(context:context, mTitle: "시/군/구", codeType: Const.SIDO_AREA, mFilter: mSido.value, callback: selectSidoArea).showDialog();
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(15.w)),
+                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(8.w)),
                             margin: EdgeInsets.only(left: CustomStyle.getWidth(5.w)),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(5.w)),
@@ -310,13 +312,13 @@ class _AddrSearchPageState extends State<AddrSearchPage> {
                           )
                         ),
                           ]
-                        ),
+                        )),
                         InkWell(
                           onTap: () async {
                             await confirm();
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(10.w)),
+                            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(5.h),horizontal: CustomStyle.getWidth(5.w)),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(5.w)),
                                 color: main_color,
@@ -327,7 +329,7 @@ class _AddrSearchPageState extends State<AddrSearchPage> {
                               style: CustomStyle.CustomFont(styleFontSize14, Colors.white),
                             ),
                           )
-                        )
+                       )
                       ]
                     )
               );

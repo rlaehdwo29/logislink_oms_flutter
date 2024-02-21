@@ -120,7 +120,7 @@ class _OrderCustomerPageState extends State<OrderCustomerPage> {
           Navigator.of(context).pop({'code':200,'cust':item, "nonCust":false});
         },
         child: Container(
-            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h), horizontal: CustomStyle.getWidth(20.w)),
+            padding: EdgeInsets.symmetric(vertical: CustomStyle.getHeight(10.h), horizontal: CustomStyle.getWidth(5.w)),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
