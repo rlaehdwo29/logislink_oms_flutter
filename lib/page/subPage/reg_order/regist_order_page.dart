@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -782,6 +784,19 @@ class _RegistOrderPageState extends State<RegistOrderPage> {
         logger.d("regOrder() _response -> ${_response.status} // ${_response.resultMap}");
         if(_response.status == "200") {
           if(_response.resultMap?["result"] == true) {
+            var user = await controller.getUserInfo();
+
+            await FirebaseAnalytics.instance.logEvent(
+              name: Platform.isAndroid ? "regist_order_aos" : "regist_order_ios",
+              parameters: {
+                "user_id": user.userId,
+                "user_custId" : user.custId,
+                "user_deptId": user.deptId,
+                "reqCustId" : mData.value.sellCustId,
+                "sellDeptId" : mData.value.sellDeptId
+              },
+            );
+
             Navigator.of(context).pop({'code':200});
           }else{
             openOkBox(context,"${_response.resultMap?["msg"]}",Strings.of(context)?.get("confirm")??"Error!!",() {Navigator.of(context).pop(false);});
