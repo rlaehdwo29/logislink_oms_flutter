@@ -3,7 +3,7 @@ class Const {
   static final bool logEnable = false;
 
   // 버전명
-  static final APP_VERSION = "1.1.10";
+  static final APP_VERSION = "1.1.12";
 
   //스토어 주소
   static final ANDROID_STORE = "https://play.google.com/store/apps/details?id=com.logislink.oms";

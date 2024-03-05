@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:fbroadcast/fbroadcast.dart' as fbroad;
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -422,6 +423,17 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
   }
 
   Future<void> goToOrderDetail(OrderModel item) async {
+    var user = await controller.getUserInfo();
+    await FirebaseAnalytics.instance.logEvent(
+      name: Platform.isAndroid ? "inquire_order_aos" : "inquire_order_ios",
+      parameters: {
+        "user_id": user.userId,
+        "user_custId" : user.custId,
+        "user_deptId": user.deptId,
+        "orderId" : item.orderId,
+      },
+    );
+
     Map<String,dynamic> results = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => OrderDetailPage(order_vo: item)));
 
     if(results != null && results.containsKey("code")){
