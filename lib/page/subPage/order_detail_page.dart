@@ -492,22 +492,28 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                       style: CustomStyle.CustomFont(styleFontSize15, order_state_01,font_weight: FontWeight.w700),
                     ),
               ),
-             Container(
+              Expanded(
+                  flex: 3,
+                  child: Container(
                     padding: EdgeInsets.only(right: CustomStyle.getWidth(3.w)),
                     child: Text(
                       mData.value.buyCustName??"",
                       style: CustomStyle.CustomFont(styleFontSize13, text_color_01),
                     ),
+                  )
               ),
-             Container(
-                    padding: EdgeInsets.only(right: CustomStyle.getWidth(3.w)),
-                    child: Text(
-                      mData.value.buyDeptName??"",
-                      style: CustomStyle.CustomFont(styleFontSize13, text_color_01),
-                    ),
+                    Expanded(
+                    flex: 2,
+                      child: Container(
+                      padding: EdgeInsets.only(right: CustomStyle.getWidth(3.w)),
+                      child: Text(
+                        mData.value.buyDeptName??"",
+                        style: CustomStyle.CustomFont(styleFontSize13, text_color_01),
+                      ),
+                   )
               ),
               Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Text(
                     "${Util.getInCodeCommaWon(mData.value.buyCharge??"0")}원",
                     textAlign: TextAlign.right,
@@ -812,15 +818,21 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                       textAlign: TextAlign.center,
                                     )
                                 ) : const SizedBox(),
-                                Container(
-                                  padding: EdgeInsets.only(left: CustomStyle.getWidth(5.w), right: CustomStyle.getWidth(5.w), top: CustomStyle.getHeight(5.h), bottom: CustomStyle.getHeight(10.h)),
+                          Flexible(
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w)),
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    !(mData.value.sMemo?.isEmpty == true) ? mData.value.sMemo??"-" : "-",
-                                    style: CustomStyle.CustomFont(styleFontSize14, text_color_01),
-                                  ),
-                                )
-                              ])),
+                                  child: RichText(
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    text: TextSpan(
+                                      text: !(mData.value.sMemo?.isEmpty == true) ? mData.value.sMemo??"-" : "-",
+                                      style: CustomStyle.CustomFont(styleFontSize14, text_color_01),
+                                    ),
+                                  )
+                              )
+                          )
+                        ])),
                     ),
                     Expanded(
                       flex: 1,
@@ -837,10 +849,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                 color: sub_color
                             ),
                             child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "${Util.splitEDate(mData.value.eDate)} 하차",
+                                    textAlign: TextAlign.center,
                                     style: CustomStyle.CustomFont(styleFontSize13, text_box_color_01),
                                   ),
                                   Container(
@@ -910,14 +923,20 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                         textAlign: TextAlign.left,
                                       )
                                   ) : const SizedBox(),
-                                  Container(
-                                    padding: const EdgeInsets.all(10.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      !(mData.value.eMemo?.isEmpty == true) ? mData.value.eMemo??"-" : "-",
-                                      style: CustomStyle.CustomFont(styleFontSize13, text_color_01),
-                                    ),
-                                  )
+                                Flexible(
+                                    child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: CustomStyle.getWidth(5.w)),
+                                        alignment: Alignment.centerLeft,
+                                        child: RichText(
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.left,
+                                          text: TextSpan(
+                                            text: !(mData.value.eMemo?.isEmpty == true) ? mData.value.eMemo ?? "-" : "-",
+                                            style: CustomStyle.CustomFont(styleFontSize13, text_color_01),
+                                          ),
+                                        )
+                                    )
+                                )
                                 ]
                             )
                         )

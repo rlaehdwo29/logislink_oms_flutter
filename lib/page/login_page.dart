@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
   @override
   void initState() {
     super.initState();
+    m_TermsMode = TERMS.NONE;
   }
 
   Widget _entryField() {
@@ -322,35 +323,38 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
           logger.i("userLogin() _response -> ${_response.status} // ${_response.resultMap}");
             if (_response.status == "200") {
               if (_response.resultMap?["result"] == true) {
-                if (_response.resultMap?["data"] != null) {
-                  UserModel userInfo = UserModel.fromJSON(it.response.data["data"]);
-                  if (userInfo != null) {
-                    userInfo.authorization = it.response.headers["authorization"]?[0];
-                    await controller.setUserInfo(userInfo);
-                    if (m_TermsCheck == false && m_TermsMode == TERMS.INSERT) {
-                      var results = await Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (
-                                  BuildContext context) => const TermsPage())
-                      );
+                  if (_response.resultMap?["data"] != null) {
+                    UserModel userInfo = UserModel.fromJSON(
+                        it.response.data["data"]);
+                    if (userInfo != null) {
+                      userInfo.authorization =
+                      it.response.headers["authorization"]?[0];
+                      await controller.setUserInfo(userInfo);
+                      if (m_TermsCheck == false &&
+                          m_TermsMode == TERMS.INSERT) {
+                        var results = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (
+                                    BuildContext context) => const TermsPage())
+                        );
 
-                      if (results != null && results.containsKey("code")) {
-                        if (results["code"] == 200) {
-                          sendDeviceInfo();
-                          sendAlarmTalk();
+                        if (results != null && results.containsKey("code")) {
+                          if (results["code"] == 200) {
+                            sendDeviceInfo();
+                            sendAlarmTalk();
+                          }
                         }
+                      } else {
+                        sendDeviceInfo();
+                        sendAlarmTalk();
                       }
                     } else {
-                      sendDeviceInfo();
-                      sendAlarmTalk();
+                      openOkBox(context, _response.message ?? "",
+                          Strings.of(context)?.get("confirm") ?? "Error!!", () {
+                            Navigator.of(context).pop(false);
+                          });
                     }
-                  } else {
-                    openOkBox(context, _response.message ?? "",
-                        Strings.of(context)?.get("confirm") ?? "Error!!", () {
-                          Navigator.of(context).pop(false);
-                        });
                   }
-                }
               } else {
                 openOkBox(context, _response.resultMap?["msg"],
                     Strings.of(context)?.get("confirm") ?? "Error!!", () {
