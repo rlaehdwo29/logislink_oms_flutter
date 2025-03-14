@@ -242,12 +242,9 @@ class _MyAppState extends State<MyApp> {
             locale: const Locale('ko'),
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              appBarTheme: ThemeData.light()
-                  .appBarTheme
-                  .copyWith(backgroundColor: main_color),
+              appBarTheme: ThemeData.light().appBarTheme.copyWith(backgroundColor: main_color),
               primaryColor: main_color,
-              backgroundColor: styleWhiteCol,
-              textTheme: TextTheme(bodyText1: CustomStyle.baseFont()),
+              textTheme: TextTheme(bodyLarge: CustomStyle.baseFont()),
               visualDensity: VisualDensity.adaptivePlatformDensity,
               fontFamily: 'NanumSquare',
             ),

@@ -23,6 +23,8 @@ import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:dio/dio.dart';
 
+import '../common/model/user_model.dart';
+
 class Util {
 
 /*  static int convertDpToPx(Context context, int dp) {
@@ -439,7 +441,7 @@ class Util {
           webViewController?.loadUrl(urlRequest: URLRequest(url: await webViewController?.getUrl()));}
       },
     ))!;
-    Uri myUrl = Uri.parse(SERVER_URL + URL_NOTICE_DETAIL + seq.toString());
+    String myUrl = SERVER_URL + URL_NOTICE_DETAIL + seq.toString();
 
     return showDialog(
         context: context,
@@ -464,7 +466,7 @@ class Util {
                             children: [
                               InAppWebView(
                                 key: webviewKey,
-                                initialUrlRequest: URLRequest(url: myUrl),
+                                initialUrlRequest: URLRequest(url: WebUri(myUrl)),
                                 initialOptions: InAppWebViewGroupOptions(
                                   crossPlatform: InAppWebViewOptions(
                                       javaScriptCanOpenWindowsAutomatically: true,
@@ -493,10 +495,10 @@ class Util {
                                 ),
                                 pullToRefreshController: pullToRefreshController,
                                 onLoadStart: (InAppWebViewController controller, uri) {
-                                  setState(() {myUrl = uri!;});
+                                  setState(() {myUrl = uri.toString();});
                                 },
                                 onLoadStop: (InAppWebViewController controller, uri) {
-                                  setState(() {myUrl = uri!;});
+                                  setState(() {myUrl = uri!.toString();});
                                 },
                                 onProgressChanged: (controller, progress) {
                                   if (progress == 100) {pullToRefreshController?.endRefreshing();}
@@ -586,6 +588,42 @@ class Util {
           );
         }
     );
+  }
+
+  static Future<void> setEventLog(String menuUrl, String menuName, {String? loginYn}) async {
+    Logger logger = Logger();
+    UserModel? user = await App().getUserInfo();
+    var app_version = await Util.getVersionName();
+    await DioService.dioClient(header: true).setEventLog(
+        user.userId,
+        menuUrl,
+        menuName,
+        "화주",
+        Platform.isAndroid ? "Android" : "IOS",
+        app_version,
+        loginYn??"N"
+    ).then((it) async {
+      ReturnMap response = DioService.dioResponse(it);
+      logger.d("setEventLog() _response -> ${response.status} // ${response.resultMap}");
+      if(response.status == "200") {
+        if(response.resultMap?["result"] == true) {
+
+        }else{
+          toast(response.resultMap?["msg"]);
+        }
+      }
+    }).catchError((Object obj) async {
+      switch (obj.runtimeType) {
+        case DioError:
+        // Here's the sample to get the failed response error code and message
+          final res = (obj as DioError).response;
+          print("setEventLog() Error => ${res?.statusCode} // ${res?.statusMessage}");
+          break;
+        default:
+          print("setEventLog() Error Default => ");
+          break;
+      }
+    });
   }
 
 }

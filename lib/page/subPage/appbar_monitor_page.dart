@@ -22,6 +22,8 @@ import 'package:logislink_oms_flutter/widget/show_code_dialog_widget.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:dio/dio.dart';
 
+import '../../common/config_url.dart';
+
 class AppBarMonitorPage extends StatefulWidget {
   AppBarMonitorPage({Key? key}):super(key: key);
 
@@ -211,6 +213,7 @@ Widget tabBarValueWidget(String? tabValue) {
       await pr?.hide();
       ReturnMap response = DioService.dioResponse(it);
       logger.d("getMonitorOrder() _response -> ${response.status} // ${response.resultMap}");
+      await Util.setEventLog(URL_MONITOR_ORDER, "오더&배차");
       if(response.status == "200") {
         if (response.resultMap?["data"] != null) {
             var list = response.resultMap?["data"] as List;
@@ -247,6 +250,7 @@ Widget tabBarValueWidget(String? tabValue) {
       await pr?.hide();
       ReturnMap response = DioService.dioResponse(it);
       logger.d("getMonitorAlloc() _response -> ${response.status} // ${response.resultMap}");
+      await Util.setEventLog(URL_MONITOR_ALLOC, "부서별손익");
       if(response.status == "200") {
         if (response.resultMap?["data"] != null) {
             var list = response.resultMap?["data"] as List;
@@ -2458,7 +2462,7 @@ Widget build(BuildContext context) {
         });
       } ,
       child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
               centerTitle: true,
               toolbarHeight: 50.h,

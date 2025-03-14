@@ -427,10 +427,10 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
     await FirebaseAnalytics.instance.logEvent(
       name: Platform.isAndroid ? "inquire_order_aos" : "inquire_order_ios",
       parameters: {
-        "user_id": user.userId,
-        "user_custId" : user.custId,
-        "user_deptId": user.deptId,
-        "orderId" : item.orderId,
+        "user_id": user.userId??"",
+        "user_custId" : user.custId??"",
+        "user_deptId": user.deptId??"",
+        "orderId" : item.orderId??"",
       },
     );
 
@@ -1324,7 +1324,6 @@ class _MainPageState extends State<MainPage> with CommonMainWidget,WidgetsBindin
                         await goToRegOrder();
                       },
                       child: Container(
-                          height: CustomStyle.getHeight(60),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(color: main_color),
                           child: Row(

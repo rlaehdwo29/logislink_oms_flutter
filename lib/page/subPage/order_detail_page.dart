@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fbroadcast/fbroadcast.dart' as BroadCast;
 import 'package:flutter/material.dart';
+import 'package:flutter_direct_caller_plugin/flutter_direct_caller_plugin.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -21,7 +22,6 @@ import 'package:logislink_oms_flutter/page/subPage/reg_order/regist_order_page.d
 import 'package:logislink_oms_flutter/page/subPage/reg_order/stop_point_page.dart';
 import 'package:logislink_oms_flutter/provider/dio_service.dart';
 import 'package:logislink_oms_flutter/utils/util.dart';
-import 'package:phone_call/phone_call.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:dio/dio.dart';
@@ -591,7 +591,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                       DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                                       AndroidDeviceInfo info = await deviceInfo.androidInfo;
                                       if (info.version.sdkInt >= 23) {
-                                        await PhoneCall.calling("${mData.value.driverTel}");
+                                        await FlutterDirectCallerPlugin.callNumber("${mData.value.driverTel}");
                                       }else{
                                         await launch("tel://${mData.value.driverTel}");
                                       }
@@ -783,7 +783,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                             DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                                             AndroidDeviceInfo info = await deviceInfo.androidInfo;
                                             if (info.version.sdkInt >= 23) {
-                                              await PhoneCall.calling("${mData.value.sTel}");
+                                              await FlutterDirectCallerPlugin.callNumber("${mData.value.sTel}");
                                             }else{
                                               await launch("tel://${mData.value.sTel}");
                                             }
@@ -888,7 +888,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                               DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                                               AndroidDeviceInfo info = await deviceInfo.androidInfo;
                                               if (info.version.sdkInt >= 23) {
-                                                await PhoneCall.calling("${mData.value.eTel}");
+                                                await FlutterDirectCallerPlugin.callNumber("${mData.value.eTel}");
                                               }else{
                                                 await launch("tel://${mData.value.eTel}");
                                               }
@@ -1433,7 +1433,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                               DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                               AndroidDeviceInfo info = await deviceInfo.androidInfo;
                               if (info.version.sdkInt >= 23) {
-                                await PhoneCall.calling("${mStopList.value[index].eTel}");
+                                await FlutterDirectCallerPlugin.callNumber("${mStopList.value[index].eTel}");
                               }else{
                                 await launch("tel://${mStopList.value[index].eTel}");
                               }

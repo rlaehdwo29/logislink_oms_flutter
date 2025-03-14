@@ -266,12 +266,12 @@ class _ReceiptPageState extends State<ReceiptPage>{
           return false;
         } ,
         child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Colors.white,
           appBar: AppBar(
                 centerTitle: true,
                 title: Text(
                     "인수증",
-                    style: CustomStyle.appBarTitleFont(styleFontSize18,styleWhiteCol)
+                    style: CustomStyle.appBarTitleFont(styleFontSize18,Colors.black)
                 ),
                 toolbarHeight: 50.h,
                 leading: IconButton(
@@ -279,7 +279,7 @@ class _ReceiptPageState extends State<ReceiptPage>{
                     Navigator.of(context).pop({'code':200});
                   },
                   color: styleWhiteCol,
-                  icon: Icon(Icons.arrow_back, size: 24.h, color: styleWhiteCol),
+                  icon: Icon(Icons.arrow_back, size: 24.h, color: Colors.black),
                 ),
               ),
           body: SafeArea(

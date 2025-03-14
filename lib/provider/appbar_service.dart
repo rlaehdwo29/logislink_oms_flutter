@@ -9,6 +9,8 @@ import 'package:logislink_oms_flutter/constants/const.dart';
 import 'package:logislink_oms_flutter/provider/dio_service.dart';
 import 'package:logislink_oms_flutter/utils/util.dart';
 
+import '../common/config_url.dart';
+
 class AppbarService with ChangeNotifier {
   final addrList = List.empty(growable: true).obs;
   final noticeList = List.empty(growable: true).obs;
@@ -51,10 +53,11 @@ class AppbarService with ChangeNotifier {
     Logger logger = Logger();
     var app = await App().getUserInfo();
     noticeList.value = List.empty(growable: true);
-    await DioService.dioClient(header: true).getNotice(app.authorization).then((it) {
+    await DioService.dioClient(header: true).getNotice(app.authorization).then((it) async {
       if (noticeList.isNotEmpty == true) noticeList.value = List.empty(growable: true);
       ReturnMap _response = DioService.dioResponse(it);
       logger.d("getNotice() _response -> ${_response.status} // ${_response.resultMap}");
+      await Util.setEventLog(URL_NOTICE, "공지사항");
       if(_response.status == "200") {
         if (_response.resultMap?["data"] != null) {
           try {

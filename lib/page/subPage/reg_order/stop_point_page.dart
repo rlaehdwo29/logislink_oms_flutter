@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_direct_caller_plugin/flutter_direct_caller_plugin.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:logislink_oms_flutter/common/model/order_model.dart';
@@ -12,7 +13,6 @@ import 'package:logislink_oms_flutter/common/style_theme.dart';
 import 'package:logislink_oms_flutter/constants/const.dart';
 import 'package:logislink_oms_flutter/page/subPage/reg_order/order_addr_page.dart';
 import 'package:logislink_oms_flutter/utils/util.dart';
-import 'package:phone_call/phone_call.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -194,7 +194,7 @@ class _StopPointPageState extends State<StopPointPage> {
                            DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                            AndroidDeviceInfo info = await deviceInfo.androidInfo;
                            if (info.version.sdkInt >= 23) {
-                             await PhoneCall.calling("${item.eTel}");
+                             await FlutterDirectCallerPlugin.callNumber("${item.eTel}");
                            }else{
                              await launch("tel://${item.eTel}");
                            }

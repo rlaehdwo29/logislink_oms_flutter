@@ -19,6 +19,8 @@ import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 
+import '../common/config_url.dart';
+
 class NotificationPage extends StatefulWidget {
 
   NotificationPage({Key? key}):super(key: key);
@@ -50,6 +52,7 @@ class _NotificationPageState extends State<NotificationPage> {
       await pr?.hide();
       ReturnMap _response = DioService.dioResponse(it);
       logger.d("getNotification() _response -> ${_response.status} // ${_response.resultMap}");
+      await Util.setEventLog(URL_NOTIFICATION, "알림");
       if(_response.status == "200") {
         if (_response.resultMap?["result"] == true) {
             var list = _response.resultMap?["data"] as List;
@@ -90,7 +93,7 @@ class _NotificationPageState extends State<NotificationPage> {
           });
     },
     child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Colors.white,
         appBar: AppBar(
               centerTitle: true,
               title:Text("알림",

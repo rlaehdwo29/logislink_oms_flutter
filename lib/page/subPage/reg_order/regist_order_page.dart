@@ -26,6 +26,8 @@ import 'package:logislink_oms_flutter/utils/util.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:dio/dio.dart';
 
+import '../../../common/config_url.dart';
+
 class RegistOrderPage extends StatefulWidget {
 
   OrderModel? order_vo;
@@ -793,6 +795,7 @@ class _RegistOrderPageState extends State<RegistOrderPage> {
         pr?.hide();
         ReturnMap _response = DioService.dioResponse(it);
         logger.d("regOrder() _response -> ${_response.status} // ${_response.resultMap}");
+        await Util.setEventLog(URL_ORDER_REG, "오더등록");
         if(_response.status == "200") {
           if(_response.resultMap?["result"] == true) {
             var user = await controller.getUserInfo();
@@ -800,11 +803,11 @@ class _RegistOrderPageState extends State<RegistOrderPage> {
             await FirebaseAnalytics.instance.logEvent(
               name: Platform.isAndroid ? "regist_order_aos" : "regist_order_ios",
               parameters: {
-                "user_id": user.userId,
-                "user_custId" : user.custId,
-                "user_deptId": user.deptId,
-                "reqCustId" : mData.value.sellCustId,
-                "sellDeptId" : mData.value.sellDeptId
+                "user_id": user.userId??"",
+                "user_custId" : user.custId??"",
+                "user_deptId": user.deptId??"",
+                "reqCustId" : mData.value.sellCustId??"",
+                "sellDeptId" : mData.value.sellDeptId??""
               },
             );
 
@@ -989,7 +992,11 @@ class _RegistOrderPageState extends State<RegistOrderPage> {
                                   style: CustomStyle.CustomFont(
                                       styleFontSize16, styleWhiteCol),
                                 ),
-                              ])))),
+                              ]
+                          )
+                      )
+                  )
+              ),
             ],
           )),
     )

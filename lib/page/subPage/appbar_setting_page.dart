@@ -57,6 +57,7 @@ class _AppBarSettingPageState extends State<AppBarSettingPage> {
   }
 
   Future<void> initView() async {
+    await Util.setEventLog(URL_OPTION_UPDATE, "설정");
     await getOrderOption();
   }
 

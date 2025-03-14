@@ -109,7 +109,7 @@ openDialogBox(BuildContext context, String msg, Widget button) {
           child: AlertDialog(
             insetPadding: EdgeInsets.all(CustomStyle.getHeight(10.0)),
             contentPadding: EdgeInsets.all(CustomStyle.getWidth(0.0)),
-            content: Container(
+            content: SizedBox(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

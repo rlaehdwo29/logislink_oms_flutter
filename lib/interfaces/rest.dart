@@ -31,6 +31,21 @@ abstract class Rest {
   Future<HttpResponse> getVersion(@Field("versionKind") String versionKind);
 
   /**
+   * 로그 저장
+   */
+  @FormUrlEncoded()
+  @POST(URL_EVENT_LOG)
+  Future<HttpResponse> setEventLog(
+      @Field("userId") String? userId,
+      @Field("menu_url") String? menu_url,
+      @Field("menu_name") String? menu_name,
+      @Field("app_type") String? app_type,
+      @Field("device_os") String? device_os,
+      @Field("app_version") String? app_version,
+      @Field("loginYn") String? loginYn
+      );
+
+  /**
    * 로그인
    */
   @FormUrlEncoded()

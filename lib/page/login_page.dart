@@ -315,12 +315,11 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
         var password = Util.encryption(userPassword.value);
         password.replaceAll("\n", "");
         await pr?.show();
-        await DioService.dioClient(header: true)
-            .login(userID.value, password)
-            .then((it) async {
+        await DioService.dioClient(header: true).login(userID.value, password).then((it) async {
           await pr?.hide();
           ReturnMap _response = DioService.dioResponse(it);
           logger.i("userLogin() _response -> ${_response.status} // ${_response.resultMap}");
+          await Util.setEventLog(URL_MEMBER_LOGIN, "모바일로그인", loginYn: "Y");
             if (_response.status == "200") {
               if (_response.resultMap?["result"] == true) {
                   if (_response.resultMap?["data"] != null) {
@@ -392,7 +391,7 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
     return mainWidget(
         context,
         child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: sub_color,
           body: SafeArea(
             child: Container(
                 width:width,
@@ -449,8 +448,8 @@ class _LoginPageState extends State<LoginPage> with CommonMainWidget {
                                           height: CustomStyle.getHeight(50.0),
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                  primary: Colors.white,
-                                                  onPrimary: Colors.white
+                                                  foregroundColor: Colors.white,
+                                                  backgroundColor: Colors.white
                                               ),
                                               onPressed: () async {
                                                 if(validate()) await userLogin();

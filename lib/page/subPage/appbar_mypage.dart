@@ -57,6 +57,7 @@ class _AppBarMyPageState extends State<AppBarMyPage> {
     etPasswordConfirmController = TextEditingController();
 
     Future.delayed(Duration.zero, () async {
+      await Util.setEventLog("MyInfo", "내정보");
       mData.value = await App().getUserInfo();
     });
 
@@ -425,7 +426,7 @@ class _AppBarMyPageState extends State<AppBarMyPage> {
           });
         },
         child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
                 toolbarHeight: 50.h,
                 leading: IconButton(

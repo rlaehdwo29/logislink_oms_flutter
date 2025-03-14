@@ -126,8 +126,8 @@ class _FindUserPageState extends State<FindUserPage> {
                  height: CustomStyle.getHeight(50.0),
                  child: ElevatedButton(
                      style: ElevatedButton.styleFrom(
-                         primary: main_color,
-                         onPrimary: main_color,
+                       foregroundColor: main_color,
+                       backgroundColor: main_color,
                      ),
                      onPressed: () {
                        var logger = Logger();
@@ -258,8 +258,8 @@ class _FindUserPageState extends State<FindUserPage> {
                    height: CustomStyle.getHeight(50.0),
                    child: ElevatedButton(
                        style: ElevatedButton.styleFrom(
-                         primary: main_color,
-                         onPrimary: main_color,
+                         foregroundColor: main_color,
+                         backgroundColor: main_color,
                        ),
                        onPressed: () {
                          if(findPW_id.isEmpty){

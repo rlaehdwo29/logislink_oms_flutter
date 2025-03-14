@@ -28,6 +28,8 @@ const String URL_KAKAO_ADDRESS = "/v2/local/search/address.json";
 const String URL_CODE_LIST = "/cmm/code/list";
 // 버전코드
 const String URL_VERSION_CODE = "/cmm/version/list";
+// 로그 저장
+const String URL_EVENT_LOG = "/cmm/insert/eventLog";
 
 // 로그인
 const String URL_MEMBER_LOGIN = "/cust/login/O";
