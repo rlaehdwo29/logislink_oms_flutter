@@ -4,7 +4,7 @@
 //String SERVER_URL = "https://app.logis-link.co.kr";   // PRO URL
 
 const String m_ServerRelease = "https://app.logis-link.co.kr";
-const String m_ServerDebug = "http://172.30.1.89:8080";
+const String m_ServerDebug = "http://192.168.53.51:9080";
 //const String m_ServerDebug = "http://192.168.0.2:8080";
 const String m_ServerTest = "http://211.252.86.30:806";
 const String SERVER_URL = m_ServerRelease;
@@ -30,6 +30,8 @@ const String URL_CODE_LIST = "/cmm/code/list";
 const String URL_VERSION_CODE = "/cmm/version/list";
 // 로그 저장
 const String URL_EVENT_LOG = "/cmm/insert/eventLog";
+// 차주 위치 관제 로그 저장
+const String URL_DRIVER_LOCATION_LOG = "/cmm/insert/eventDriverLocLog";
 
 // 로그인
 const String URL_MEMBER_LOGIN = "/cust/login/O";

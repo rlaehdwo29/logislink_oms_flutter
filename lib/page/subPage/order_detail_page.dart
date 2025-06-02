@@ -166,6 +166,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   }
 
   Future<void> goToLocationControl() async {
+    await Util.setDriverLocationLog(mData.value.orderId);
     await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationControlPage(order_vo:mData.value)));
   }
 
